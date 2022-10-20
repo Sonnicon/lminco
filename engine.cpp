@@ -75,8 +75,10 @@ bool Engine::execute() {
             break;
         case (7):
             op_brz(opcodeA);
+            break;
         case (8):
             op_brp(opcodeA);
+            break;
         case (9):
             if (opcodeA & 1) {
                 op_in();
@@ -118,24 +120,24 @@ void Engine::op_sto(unsigned char address) {
 }
 
 void Engine::op_lda(unsigned char address) {
-    accumulator = memory[2 * address + 1];
-    accumulator |= memory[2 * address] << 8;
+    accumulator = memory[2 * address + 1] << 8;
+    accumulator |= memory[2 * address];
     accumulatorFlag = false;
 }
 
 void Engine::op_br(unsigned char address) {
-    programCounter = GETMEMORY(address);
+    programCounter = address;
 }
 
 void Engine::op_brz(unsigned char address) {
     if (accumulator == 0) {
-        programCounter = GETMEMORY(address);
+        programCounter = address;
     }
 }
 
 void Engine::op_brp(unsigned char address) {
     if (!accumulatorFlag) {
-        programCounter = GETMEMORY(address);
+        programCounter = address;
     }
 }
 

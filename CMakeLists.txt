@@ -3,4 +3,4 @@ project(lminco)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(lminco main.cpp main.h engine.cpp engine.h)
+add_executable(lminco main.cpp main.h engine.cpp engine.h assembler.cpp assembler.h)
