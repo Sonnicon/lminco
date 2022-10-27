@@ -68,6 +68,9 @@ std::string* Assembler::assembleFile(std::string* ifile, std::string* ofile) {
                 exit(1);
             }
             split >> currentCommand->data;
+            if (currentCommand->data[0] == '#') {
+                currentCommand->data = {};
+            }
         }
 
         commands.push_back(currentCommand);
